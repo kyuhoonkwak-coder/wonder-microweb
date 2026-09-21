@@ -15,7 +15,7 @@
   /* 상담 신청 전송 엔드포인트.
      null 이면 전송하지 않고 완료 화면만 표시합니다(데모 모드).
      실제 연동 시 백엔드 URL을 지정하세요. 예) '/api/apply' */
-  var APPLY_ENDPOINT = null;
+  var APPLY_ENDPOINT = 'api/apply.php';
 
   /* 수익 계산 계수.
      공식 원더 페이지 기본값(건강 10만 + 자동차 10만 → 보험소득 138만원)을
