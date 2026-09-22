@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/_auth.php';
 admin_require_login();
-require __DIR__ . '/../api/db.php';
+require_once __DIR__ . '/../api/db.php';
 
 $q = trim((string)($_GET['q'] ?? ''));
 $pdo = wonder_db();
