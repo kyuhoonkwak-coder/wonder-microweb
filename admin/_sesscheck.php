@@ -21,4 +21,6 @@ echo json_encode([
     'db_row' => $row ?: null,
     'php_sapi' => php_sapi_name(),
     'hostname' => gethostname(),
+    'authorization_header' => $_SERVER['HTTP_AUTHORIZATION'] ?? ($_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? null),
+    'php_auth_user' => $_SERVER['PHP_AUTH_USER'] ?? null,
 ], JSON_PRETTY_PRINT);

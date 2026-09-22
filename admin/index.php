@@ -77,7 +77,6 @@ function fmtPhone($digits) {
     <div class="head-actions">
       <span class="count">총 <?= number_format($total) ?>건</span>
       <a class="btn" href="export.php<?= $q !== '' ? '?q=' . urlencode($q) : '' ?>">CSV 내보내기</a>
-      <a class="btn" href="logout.php">로그아웃</a>
     </div>
   </div>
 
