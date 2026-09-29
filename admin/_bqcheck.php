@@ -7,6 +7,15 @@ header('Content-Type: application/json; charset=utf-8');
 
 $out = ['settings' => wonder_bq_settings()];
 
+$chEmail = curl_init('http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/email');
+curl_setopt_array($chEmail, [
+    CURLOPT_HTTPHEADER => ['Metadata-Flavor: Google'],
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_TIMEOUT => 2,
+]);
+$out['runtime_service_account'] = curl_exec($chEmail);
+curl_close($chEmail);
+
 try {
     $token = wonder_bq_access_token();
     $out['token_ok'] = true;
