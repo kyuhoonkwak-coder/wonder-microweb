@@ -340,7 +340,8 @@ section { padding-block: 72px; }
 }
 
 .lf-field input[type="text"],
-.lf-field input[type="tel"] {
+.lf-field input[type="tel"],
+.lf-field select {
   width: 100%; padding: 14px 15px;
   border: var(--bd) solid var(--border); border-radius: var(--r);
   background: var(--white);
@@ -348,12 +349,14 @@ section { padding-block: 72px; }
   transition: border-color .15s linear;
 }
 .lf-field input::placeholder { color: var(--disable); font-weight: 400; }
-.lf-field input:focus {
+.lf-field input:focus,
+.lf-field select:focus {
   outline: none; border-color: var(--primary);
   box-shadow: inset 0 0 0 var(--bd) var(--primary);
 }
 
-.lf-field.is-error input { border-color: var(--err); box-shadow: none; }
+.lf-field.is-error input,
+.lf-field.is-error select { border-color: var(--err); box-shadow: none; }
 .lf-err { margin-top: 7px; font-size: 12px; font-weight: 500; color: var(--err); }
 .lf-err:empty { display: none; }
 

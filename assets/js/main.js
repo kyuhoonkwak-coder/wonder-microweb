@@ -375,17 +375,25 @@
         var el = form.querySelector('[name="' + n + '"]:checked') || form.querySelector('[name="' + n + '"]');
         return el ? el.value : '';
       };
+      var qs = new URLSearchParams(location.search);
       return {
         name:   form.querySelector('[name="name"]').value.trim(),
         phone:  form.querySelector('[name="phone"]').value.trim(),
         age:    (form.querySelector('[name="age"]:checked')  || {}).value || '',
         time:   (form.querySelector('[name="time"]:checked') || {}).value || '',
+        region: pick('region').trim(),
+        job:    pick('job'),
         source: pick('source'),
         calc:   form.querySelector('[name="calc"]').value,
         agreeRequired: true,
         agreeMarketing: form.querySelector('[name="agree2"]').checked,
         referrer: document.referrer || '',
-        landingUrl: location.href
+        landingUrl: location.href,
+        utm_source: qs.get('utm_source') || '',
+        utm_medium: qs.get('utm_medium') || '',
+        utm_campaign: qs.get('utm_campaign') || '',
+        utm_content: qs.get('utm_content') || '',
+        utm_term: qs.get('utm_term') || ''
       };
     }
 

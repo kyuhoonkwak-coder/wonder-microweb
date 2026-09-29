@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>상담 신청 (상세) | 원더(wonder) · 롯데손해보험</title>
+<meta name="description" content="원더 보험 부업 상담 신청 - 상세 정보 입력">
+<meta name="theme-color" content="#F5F5ED">
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/css/style.css?v=20260916b">
+<style>
+  .full-form-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px 16px; }
+  .full-form-page .lead-card { max-width: 440px; width: 100%; }
+  .full-form-back { display: block; margin: 0 auto 20px; text-align: center; font-size: 13px; color: var(--granite); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="full-form-page">
+  <div style="width:100%; max-width:440px;">
+    <a class="full-form-back" href="index.html">&larr; 원더 소개 페이지로</a>
+
+    <div class="lead-card" id="leadFull">
+      <div class="lead-head">
+        <p class="mono lead-badge">FREE · 60 SEC</p>
+        <h2 class="lead-title">상담 신청하기 (상세)</h2>
+        <p class="lead-sub">조금 더 알려주시면 상담원이 맞춤 안내를 드립니다.</p>
+      </div>
+
+      <form class="lead-form" data-lead-form novalidate>
+        <div class="lf-field">
+          <label for="lf3-name">이름</label>
+          <input type="text" id="lf3-name" name="name" autocomplete="name" placeholder="홍길동" required>
+          <p class="lf-err" data-err="name"></p>
+        </div>
+
+        <div class="lf-field">
+          <label for="lf3-phone">휴대폰 번호</label>
+          <input type="tel" id="lf3-phone" name="phone" inputmode="numeric" autocomplete="tel"
+                 placeholder="010-0000-0000" maxlength="13" data-phone required>
+          <p class="lf-err" data-err="phone"></p>
+        </div>
+
+        <div class="lf-field">
+          <label for="lf3-region">지역 <i>선택</i></label>
+          <input type="text" id="lf3-region" name="region" autocomplete="address-level2" placeholder="예: 서울 강남구">
+        </div>
+
+        <div class="lf-field">
+          <label for="lf3-job">직업 <i>선택</i></label>
+          <select id="lf3-job" name="job">
+            <option value="">선택 안 함</option>
+            <option value="직장인">직장인</option>
+            <option value="주부">주부</option>
+            <option value="자영업">자영업</option>
+            <option value="프리랜서">프리랜서</option>
+            <option value="무직·구직">무직·구직</option>
+            <option value="기타">기타</option>
+          </select>
+        </div>
+
+        <div class="lf-field">
+          <span class="lf-label">연령대 <i>선택</i></span>
+          <div class="chips" role="group" aria-label="연령대 선택">
+            <label class="chip"><input type="radio" name="age" value="20대"><span>20대</span></label>
+            <label class="chip"><input type="radio" name="age" value="30대"><span>30대</span></label>
+            <label class="chip"><input type="radio" name="age" value="40대"><span>40대</span></label>
+            <label class="chip"><input type="radio" name="age" value="50대"><span>50대</span></label>
+            <label class="chip"><input type="radio" name="age" value="60대"><span>60대</span></label>
+          </div>
+        </div>
+
+        <div class="lf-field">
+          <span class="lf-label">연락 가능 시간 <i>선택</i></span>
+          <div class="chips" role="group" aria-label="연락 가능 시간 선택">
+            <label class="chip"><input type="radio" name="time" value="오전"><span>오전</span></label>
+            <label class="chip"><input type="radio" name="time" value="점심"><span>점심</span></label>
+            <label class="chip"><input type="radio" name="time" value="오후"><span>오후</span></label>
+            <label class="chip"><input type="radio" name="time" value="저녁"><span>저녁</span></label>
+            <label class="chip"><input type="radio" name="time" value="무관" checked><span>아무때나</span></label>
+          </div>
+        </div>
+
+        <div class="lf-agree">
+          <label class="check">
+            <input type="checkbox" name="agree1" required>
+            <span><b>[필수]</b> 개인(신용)정보 수집·이용 동의</span>
+          </label>
+          <button class="agree-toggle" type="button" aria-expanded="false">내용 보기</button>
+          <div class="agree-detail" hidden>
+            <p><b>수집 항목</b> 이름, 휴대폰 번호, 지역, 직업, 연령대, 연락 가능 시간</p>
+            <p><b>수집 목적</b> 보험설계사 위촉 상담 및 안내</p>
+            <p><b>보유 기간</b> 동의일로부터 3개월 (목적 달성 시 즉시 파기)</p>
+            <p class="agree-warn">동의를 거부하실 수 있으며, 거부 시 상담 신청이 제한됩니다.</p>
+          </div>
+
+          <label class="check">
+            <input type="checkbox" name="agree2">
+            <span><b>[선택]</b> 마케팅 정보 수신 동의</span>
+          </label>
+
+          <p class="lf-err" data-err="agree"></p>
+        </div>
+
+        <input type="hidden" name="source" value="lead-full">
+        <input type="hidden" name="calc" value="">
+
+        <button class="btn btn-accent btn-block btn-lg lf-submit" type="submit">무료 상담 신청하기</button>
+
+        <p class="lf-trust">입력하신 정보는 상담 목적으로만 사용됩니다.</p>
+      </form>
+
+      <div class="lead-done" hidden>
+        <p class="lead-done-mark" aria-hidden="true"></p>
+        <h3>상담 신청이 접수되었습니다</h3>
+        <p>입력해주신 연락처로<br>담당자가 순차적으로 연락드립니다.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/lead-form.js?v=20260929"></script>
+</body>
+</html>
