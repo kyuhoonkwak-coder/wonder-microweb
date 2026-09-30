@@ -148,14 +148,39 @@
         '<td>' + apiStatus + '</td>' +
         '<td class="calc">' + esc(l.calc_summary || '-') + '</td>' +
         '<td>' + esc(l.created_at) + '</td>' +
+        '<td><button class="btn" type="button" data-delete="' + esc(l.lead_id) + '">삭제</button></td>' +
         '</tr>';
     }).join('');
 
     listArea.innerHTML =
       '<div style="overflow-x:auto"><table><thead><tr>' +
       '<th>이름</th><th>연락처</th><th>연령대</th><th>연락가능시간</th><th>지역</th><th>직업</th>' +
-      '<th>유입경로</th><th>마케팅동의</th><th>API전송</th><th>계산기 결과</th><th>신청일시</th>' +
+      '<th>유입경로</th><th>마케팅동의</th><th>API전송</th><th>계산기 결과</th><th>신청일시</th><th></th>' +
       '</tr></thead><tbody>' + rows + '</tbody></table></div>';
+
+    Array.prototype.forEach.call(listArea.querySelectorAll('button[data-delete]'), function (btn) {
+      btn.addEventListener('click', function () {
+        var leadId = btn.getAttribute('data-delete');
+        if (!window.confirm('이 신청 내역을 삭제할까요? 되돌릴 수 없습니다.')) return;
+        btn.disabled = true;
+        btn.textContent = '삭제 중...';
+        fetch('delete.php', {
+          method: 'POST',
+          headers: { Authorization: getAuthHeader(), 'Content-Type': 'application/json' },
+          body: JSON.stringify({ lead_id: leadId })
+        })
+          .then(function (res) { return res.json(); })
+          .then(function (result) {
+            if (!result.ok) throw new Error(result.message || result.error || '삭제 실패');
+            load();
+          })
+          .catch(function (err) {
+            alert('삭제에 실패했습니다: ' + err.message);
+            btn.disabled = false;
+            btn.textContent = '삭제';
+          });
+      });
+    });
 
     var pagerHtml = '';
     for (var p = 1; p <= data.totalPages; p++) {
