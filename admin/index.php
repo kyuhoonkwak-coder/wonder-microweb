@@ -133,20 +133,23 @@
 
     var rows = data.leads.map(function (l) {
       var isMarketingYes = l.agree_marketing === 'true' || l.agree_marketing === true;
+      var isAckSuccess = l.api_result_code === '0000' || l.api_result_code === '0001';
       var apiStatus = l.api_result_code
-        ? (l.api_result_code === '0000' || l.api_result_code === '0001' ? '전송완료' : '전송실패(' + esc(l.api_result_code) + ')')
+        ? (isAckSuccess ? '전송완료' : '전송실패(' + esc(l.api_result_code) + ')')
         : '-';
+      var purged = isAckSuccess && !l.name;
+      var purgedNote = '<span class="tag">🔒 원문 파기됨</span>';
       return '<tr>' +
-        '<td>' + esc(l.name) + '</td>' +
-        '<td><a href="tel:' + esc(l.phone) + '">' + esc(fmtPhone(l.phone)) + '</a></td>' +
-        '<td>' + esc(l.age || '-') + '</td>' +
-        '<td>' + esc(l.contact_time || '-') + '</td>' +
-        '<td>' + esc(l.region || '-') + '</td>' +
-        '<td>' + esc(l.job || '-') + '</td>' +
+        '<td>' + (purged ? purgedNote : esc(l.name)) + '</td>' +
+        '<td>' + (purged ? '-' : '<a href="tel:' + esc(l.phone) + '">' + esc(fmtPhone(l.phone)) + '</a>') + '</td>' +
+        '<td>' + (purged ? '-' : esc(l.age || '-')) + '</td>' +
+        '<td>' + (purged ? '-' : esc(l.contact_time || '-')) + '</td>' +
+        '<td>' + (purged ? '-' : esc(l.region || '-')) + '</td>' +
+        '<td>' + (purged ? '-' : esc(l.job || '-')) + '</td>' +
         '<td>' + esc(l.source || '-') + '</td>' +
         '<td><span class="tag ' + (isMarketingYes ? 'yes' : '') + '">' + (isMarketingYes ? '동의' : '미동의') + '</span></td>' +
         '<td>' + apiStatus + '</td>' +
-        '<td class="calc">' + esc(l.calc_summary || '-') + '</td>' +
+        '<td class="calc">' + (purged ? '-' : esc(l.calc_summary || '-')) + '</td>' +
         '<td>' + esc(l.created_at) + '</td>' +
         '<td><button class="btn" type="button" data-delete="' + esc(l.lead_id) + '">삭제</button></td>' +
         '</tr>';

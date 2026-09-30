@@ -125,15 +125,29 @@ try {
     $teleResult = ['attempted' => true, 'result_code' => 'E500', 'receipt_no' => null, 'message' => $e->getMessage()];
 }
 
-$row = $lead + [
+// FR-05 원문 파기: ACK 검증(0000/0001 + 리드식별자 일치 + 접수번호 존재, tele_transmit.php에서 확인됨)을
+// 통과한 건은 이름·연락처 등 원문을 애초에 저장하지 않고 lead_id + 운영정보만 남깁니다.
+// tele 엔드포인트가 아직 미설정이면 ACK 자체가 없으므로(attempted=false) 지금은 항상 원문을 그대로 저장합니다.
+$ackVerified = $teleResult['attempted'] && in_array($teleResult['result_code'], ['0000', '0001'], true);
+
+$common = [
+    'source' => $source,
+    'landing_page' => 'job',
+    'agree_marketing' => (bool)$agreeMarketing,
     'match_hash' => null,
     'api_result_code' => $teleResult['result_code'],
     'api_receipt_no' => $teleResult['receipt_no'],
     'api_message' => $teleResult['message'],
     'api_sent_at' => $teleResult['attempted'] ? gmdate('Y-m-d\TH:i:s\Z') : null,
     'created_at' => gmdate('Y-m-d\TH:i:s\Z'),
-];
-unset($row['submitted_at']); // BigQuery leads 테이블에는 없는 필드 (tele API 페이로드 전용)
+] + $utm;
+
+if ($ackVerified) {
+    $row = ['lead_id' => $lead['lead_id']] + $common;
+} else {
+    $row = $lead + $common;
+    unset($row['submitted_at']); // BigQuery leads 테이블에는 없는 필드 (tele API 페이로드 전용)
+}
 
 try {
     wonder_bq_insert_row($row);
