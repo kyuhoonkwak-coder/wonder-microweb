@@ -92,7 +92,7 @@ try {
     );
     if (!empty($dupCheck['rows'])) {
         wonder_audit_log('duplicate_within_24h', ['lead_id' => $dupCheck['rows'][0]['lead_id']]);
-        echo json_encode(['ok' => true]);
+        echo json_encode(['ok' => true, 'duplicate' => true]);
         exit;
     }
 } catch (Throwable $e) {

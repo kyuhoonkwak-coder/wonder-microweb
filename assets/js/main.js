@@ -436,14 +436,17 @@
       submitBtn.disabled = true;
       submitBtn.textContent = '전송 중...';
 
-      var succeed = function () {
+      var succeed = function (isDuplicate) {
+        if (isDuplicate) {
+          window.alert('이미 접수된 신청입니다. 곧 담당자가 연락드리겠습니다.');
+        }
         form.hidden = true;
         done.hidden = false;
         // 히어로 폼은 헤드도 감춰 완료 메시지만 남긴다
         var head = $('.lead-head', card);
         if (head) head.hidden = true;
         card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        track('lead_submit', { source: payload.source, age: payload.age, time: payload.time });
+        track('lead_submit', { source: payload.source, age: payload.age, time: payload.time, duplicate: !!isDuplicate });
       };
 
       var fail = function (err) {
@@ -465,7 +468,9 @@
         body: JSON.stringify(payload)
       }).then(function (res) {
         if (!res.ok) throw new Error('HTTP ' + res.status);
-        succeed();
+        return res.json().catch(function () { return {}; });
+      }).then(function (result) {
+        succeed(!!(result && result.duplicate));
       }).catch(fail);
     });
   }
