@@ -360,6 +360,9 @@ section { padding-block: 72px; }
 .lf-err { margin-top: 7px; font-size: 12px; font-weight: 500; color: var(--err); }
 .lf-err:empty { display: none; }
 
+/* 허니팟 — 실제 이용자에게는 보이지 않고 자동 입력 봇만 채우는 함정 필드 */
+.hp-field { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
 /* chips */
 .chips { display: flex; gap: 6px; }
 .chip { position: relative; flex: 1 1 0; }

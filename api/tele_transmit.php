@@ -143,6 +143,18 @@ function wonder_tele_send(array $lead): array {
             $resultCode = $decoded['result_code'] ?? ('HTTP' . $httpCode);
             $resultMessage = $decoded['result_message'] ?? null;
             $receiptNo = $decoded['receipt_no'] ?? null;
+
+            // FR-04 ACK 검증(당사 제안): ① HTTP 성공 ② 결과코드=정상/중복 ③ 응답 리드식별자=요청값 ④ 접수번호 존재
+            $ackVerified = $httpCode < 300
+                && in_array($resultCode, ['0000', '0001'], true)
+                && ($decoded['lead_id'] ?? null) === $lead['lead_id']
+                && !empty($receiptNo);
+
+            if (!$ackVerified && in_array($resultCode, ['0000', '0001'], true)) {
+                // 결과코드는 정상인데 다른 조건(리드식별자 불일치 등)이 안 맞으면 검증 실패로 취급
+                $resultCode = 'E_ACK_MISMATCH';
+                $resultMessage = 'ACK 검증 실패: 응답 리드 식별자 또는 접수번호 불일치';
+            }
         } else {
             $resultCode = 'HTTP' . $httpCode;
             $resultMessage = mb_substr((string)$respBody, 0, 255);
