@@ -47,8 +47,15 @@
         </div>
 
         <div class="lf-field">
-          <label for="lf3-region">지역 <i>선택</i></label>
-          <input type="text" id="lf3-region" name="region" autocomplete="address-level2" placeholder="예: 서울 강남구">
+          <label for="lf3-region-do">지역 <i>선택</i></label>
+          <div class="lf-row">
+            <select id="lf3-region-do" name="region_do" data-region-do>
+              <option value="">시/도 선택</option>
+            </select>
+            <select id="lf3-region-si" name="region_si" data-region-si disabled>
+              <option value="">시/군/구 선택</option>
+            </select>
+          </div>
         </div>
 
         <div class="lf-field">
@@ -128,6 +135,7 @@
   </div>
 </div>
 
-<script src="assets/js/lead-form.js?v=20260929"></script>
+<script src="assets/js/regions-data.js?v=20260930"></script>
+<script src="assets/js/lead-form.js?v=20260930"></script>
 </body>
 </html>

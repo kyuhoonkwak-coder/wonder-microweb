@@ -124,8 +124,15 @@
           </div>
 
           <div class="lf-field">
-            <label for="lf1-region">지역 <i>선택</i></label>
-            <input type="text" id="lf1-region" name="region" autocomplete="address-level2" placeholder="예: 서울 강남구">
+            <label for="lf1-region-do">지역 <i>선택</i></label>
+            <div class="lf-row">
+              <select id="lf1-region-do" name="region_do" data-region-do>
+                <option value="">시/도 선택</option>
+              </select>
+              <select id="lf1-region-si" name="region_si" data-region-si disabled>
+                <option value="">시/군/구 선택</option>
+              </select>
+            </div>
           </div>
 
           <div class="lf-field">
@@ -543,24 +550,29 @@
             </div>
           </div>
 
-          <div class="lf-row">
-            <div class="lf-field">
-              <label for="lf2-region">지역 <i>선택</i></label>
-              <input type="text" id="lf2-region" name="region" autocomplete="address-level2" placeholder="예: 서울 강남구">
-            </div>
-
-            <div class="lf-field">
-              <label for="lf2-job">직업 <i>선택</i></label>
-              <select id="lf2-job" name="job">
-                <option value="">선택 안 함</option>
-                <option value="직장인">직장인</option>
-                <option value="주부">주부</option>
-                <option value="자영업">자영업</option>
-                <option value="프리랜서">프리랜서</option>
-                <option value="무직·구직">무직·구직</option>
-                <option value="기타">기타</option>
+          <div class="lf-field">
+            <label for="lf2-region-do">지역 <i>선택</i></label>
+            <div class="lf-row">
+              <select id="lf2-region-do" name="region_do" data-region-do>
+                <option value="">시/도 선택</option>
+              </select>
+              <select id="lf2-region-si" name="region_si" data-region-si disabled>
+                <option value="">시/군/구 선택</option>
               </select>
             </div>
+          </div>
+
+          <div class="lf-field">
+            <label for="lf2-job">직업 <i>선택</i></label>
+            <select id="lf2-job" name="job">
+              <option value="">선택 안 함</option>
+              <option value="직장인">직장인</option>
+              <option value="주부">주부</option>
+              <option value="자영업">자영업</option>
+              <option value="프리랜서">프리랜서</option>
+              <option value="무직·구직">무직·구직</option>
+              <option value="기타">기타</option>
+            </select>
           </div>
 
           <div class="lf-field">
@@ -685,6 +697,7 @@
   </div>
 </div>
 
-<script src="assets/js/main.js?v=20260921"></script>
+<script src="assets/js/regions-data.js?v=20260930"></script>
+<script src="assets/js/main.js?v=20260930"></script>
 </body>
 </html>

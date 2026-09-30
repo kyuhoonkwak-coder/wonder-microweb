@@ -21,10 +21,39 @@
     } catch (e) { /* 추적 실패가 화면을 막지 않도록 */ }
   }
 
+  function initRegionSelect(form) {
+    var doSelect = form.querySelector('[data-region-do]');
+    var siSelect = form.querySelector('[data-region-si]');
+    if (!doSelect || !siSelect) return;
+    var regions = window.WONDER_REGIONS || {};
+
+    Object.keys(regions).forEach(function (doName) {
+      var opt = document.createElement('option');
+      opt.value = doName;
+      opt.textContent = doName;
+      doSelect.appendChild(opt);
+    });
+
+    doSelect.addEventListener('change', function () {
+      siSelect.innerHTML = '<option value="">시/군/구 선택</option>';
+      var list = regions[doSelect.value];
+      if (!list) { siSelect.disabled = true; return; }
+      list.forEach(function (siName) {
+        var opt = document.createElement('option');
+        opt.value = siName;
+        opt.textContent = siName;
+        siSelect.appendChild(opt);
+      });
+      siSelect.disabled = false;
+    });
+  }
+
   function initLeadForm(form) {
     var card = form.closest('.lead-card');
     var done = $('.lead-done', card);
     var submitBtn = $('.lf-submit', form);
+
+    initRegionSelect(form);
 
     $$('.agree-toggle', form).forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -91,7 +120,7 @@
         phone:  form.querySelector('[name="phone"]').value.trim(),
         age:    (form.querySelector('[name="age"]:checked')  || {}).value || '',
         time:   (form.querySelector('[name="time"]:checked') || {}).value || '',
-        region: pick('region').trim(),
+        region: [pick('region_do'), pick('region_si')].filter(Boolean).join(' '),
         job:    pick('job'),
         source: pick('source'),
         calc:   '',
