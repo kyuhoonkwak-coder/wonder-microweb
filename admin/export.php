@@ -10,7 +10,12 @@ $table = sprintf('`%s.%s.%s`', $settings['project_id'], $settings['dataset'], $s
 $where = 'WHERE (@q = \'\' OR name LIKE CONCAT(\'%\', @q, \'%\') OR phone LIKE CONCAT(\'%\', @q, \'%\'))';
 
 try {
-    $result = wonder_bq_query("SELECT * FROM $table $where ORDER BY created_at DESC", ['q' => $q]);
+    $result = wonder_bq_query(
+        "SELECT * EXCEPT (created_at),
+                FORMAT_TIMESTAMP('%Y-%m-%d %H:%M:%S', created_at, 'Asia/Seoul') AS created_at
+         FROM $table $where ORDER BY created_at DESC",
+        ['q' => $q]
+    );
 } catch (Throwable $e) {
     http_response_code(500);
     echo 'BigQuery 조회 실패: ' . $e->getMessage();

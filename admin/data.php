@@ -22,7 +22,10 @@ try {
     $totalPages = max(1, (int)ceil($total / $perPage));
 
     $listResult = wonder_bq_query(
-        "SELECT * FROM $table $where ORDER BY created_at DESC LIMIT $perPage OFFSET $offset",
+        "SELECT * EXCEPT (created_at, api_sent_at),
+                FORMAT_TIMESTAMP('%Y-%m-%d %H:%M:%S', created_at, 'Asia/Seoul') AS created_at,
+                FORMAT_TIMESTAMP('%Y-%m-%d %H:%M:%S', api_sent_at, 'Asia/Seoul') AS api_sent_at
+         FROM $table $where ORDER BY created_at DESC LIMIT $perPage OFFSET $offset",
         ['q' => $q]
     );
 
