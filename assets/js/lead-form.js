@@ -149,13 +149,17 @@
       var succeed = function (isDuplicate) {
         if (isDuplicate) {
           window.alert('이미 접수된 신청입니다. 곧 담당자가 연락드리겠습니다.');
+          submitBtn.disabled = false;
+          submitBtn.textContent = origText;
+          track('lead_submit', { source: payload.source, age: payload.age, time: payload.time, duplicate: true });
+          return;
         }
         form.hidden = true;
         done.hidden = false;
         var head = $('.lead-head', card);
         if (head) head.hidden = true;
         card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        track('lead_submit', { source: payload.source, age: payload.age, time: payload.time, duplicate: !!isDuplicate });
+        track('lead_submit', { source: payload.source, age: payload.age, time: payload.time, duplicate: false });
       };
 
       var fail = function (err) {
