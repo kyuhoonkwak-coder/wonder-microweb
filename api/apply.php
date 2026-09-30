@@ -97,12 +97,13 @@ $row = $lead + [
     'api_sent_at' => $teleResult['attempted'] ? gmdate('Y-m-d\TH:i:s\Z') : null,
     'created_at' => gmdate('Y-m-d\TH:i:s\Z'),
 ];
+unset($row['submitted_at']); // BigQuery leads 테이블에는 없는 필드 (tele API 페이로드 전용)
 
 try {
     wonder_bq_insert_row($row);
 } catch (Throwable $e) {
     http_response_code(500);
-    echo json_encode(['ok' => false, 'error' => 'db_error', 'debug' => $e->getMessage()]);
+    echo json_encode(['ok' => false, 'error' => 'db_error']);
     exit;
 }
 
