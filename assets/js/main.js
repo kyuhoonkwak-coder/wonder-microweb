@@ -337,8 +337,8 @@
       $$('.lf-field.is-error', form).forEach(function (f) { f.classList.remove('is-error'); });
     }
 
-    /* 필수: 이름 / 휴대폰 / 필수동의 — 그 외는 모두 선택.
-       필드를 늘릴수록 전환은 떨어지므로, 지역·직업 등은 상담 통화에서 받는 것을 권장합니다. */
+    /* 필수: 이름 / 휴대폰 / 필수동의 — 지역·직업·연령대·시간대는 모두 선택.
+       원더 API 규격서(코드표 A·B·C)에 맞춰 지역·직업 입력을 추가했습니다. */
     function validate() {
       clearErrs();
       var ok = true, firstBad = null;

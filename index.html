@@ -124,12 +124,31 @@
           </div>
 
           <div class="lf-field">
+            <label for="lf1-region">지역 <i>선택</i></label>
+            <input type="text" id="lf1-region" name="region" autocomplete="address-level2" placeholder="예: 서울 강남구">
+          </div>
+
+          <div class="lf-field">
+            <label for="lf1-job">직업 <i>선택</i></label>
+            <select id="lf1-job" name="job">
+              <option value="">선택 안 함</option>
+              <option value="직장인">직장인</option>
+              <option value="주부">주부</option>
+              <option value="자영업">자영업</option>
+              <option value="프리랜서">프리랜서</option>
+              <option value="무직·구직">무직·구직</option>
+              <option value="기타">기타</option>
+            </select>
+          </div>
+
+          <div class="lf-field">
             <span class="lf-label">연령대 <i>선택</i></span>
             <div class="chips" role="group" aria-label="연령대 선택">
               <label class="chip"><input type="radio" name="age" value="20대"><span>20대</span></label>
               <label class="chip"><input type="radio" name="age" value="30대"><span>30대</span></label>
               <label class="chip"><input type="radio" name="age" value="40대"><span>40대</span></label>
-              <label class="chip"><input type="radio" name="age" value="50대 이상"><span>50대+</span></label>
+              <label class="chip"><input type="radio" name="age" value="50대"><span>50대</span></label>
+              <label class="chip"><input type="radio" name="age" value="60대"><span>60대</span></label>
             </div>
           </div>
 
@@ -137,6 +156,7 @@
             <span class="lf-label">연락 가능 시간 <i>선택</i></span>
             <div class="chips" role="group" aria-label="연락 가능 시간 선택">
               <label class="chip"><input type="radio" name="time" value="오전"><span>오전</span></label>
+              <label class="chip"><input type="radio" name="time" value="점심"><span>점심</span></label>
               <label class="chip"><input type="radio" name="time" value="오후"><span>오후</span></label>
               <label class="chip"><input type="radio" name="time" value="저녁"><span>저녁</span></label>
               <label class="chip"><input type="radio" name="time" value="무관" checked><span>아무때나</span></label>
@@ -150,7 +170,7 @@
             </label>
             <button class="agree-toggle" type="button" aria-expanded="false">내용 보기</button>
             <div class="agree-detail" hidden>
-              <p><b>수집 항목</b> 이름, 휴대폰 번호, 연령대, 연락 가능 시간</p>
+              <p><b>수집 항목</b> 이름, 휴대폰 번호, 지역, 직업, 연령대, 연락 가능 시간</p>
               <p><b>수집 목적</b> 보험설계사 위촉 상담 및 안내</p>
               <p><b>보유 기간</b> 동의일로부터 3개월 (목적 달성 시 즉시 파기)</p>
               <p class="agree-warn">동의를 거부하실 수 있으며, 거부 시 상담 신청이 제한됩니다.</p>
@@ -523,13 +543,34 @@
             </div>
           </div>
 
+          <div class="lf-row">
+            <div class="lf-field">
+              <label for="lf2-region">지역 <i>선택</i></label>
+              <input type="text" id="lf2-region" name="region" autocomplete="address-level2" placeholder="예: 서울 강남구">
+            </div>
+
+            <div class="lf-field">
+              <label for="lf2-job">직업 <i>선택</i></label>
+              <select id="lf2-job" name="job">
+                <option value="">선택 안 함</option>
+                <option value="직장인">직장인</option>
+                <option value="주부">주부</option>
+                <option value="자영업">자영업</option>
+                <option value="프리랜서">프리랜서</option>
+                <option value="무직·구직">무직·구직</option>
+                <option value="기타">기타</option>
+              </select>
+            </div>
+          </div>
+
           <div class="lf-field">
             <span class="lf-label">연령대 <i>선택</i></span>
             <div class="chips" role="group" aria-label="연령대 선택">
               <label class="chip"><input type="radio" name="age" value="20대"><span>20대</span></label>
               <label class="chip"><input type="radio" name="age" value="30대"><span>30대</span></label>
               <label class="chip"><input type="radio" name="age" value="40대"><span>40대</span></label>
-              <label class="chip"><input type="radio" name="age" value="50대 이상"><span>50대+</span></label>
+              <label class="chip"><input type="radio" name="age" value="50대"><span>50대</span></label>
+              <label class="chip"><input type="radio" name="age" value="60대"><span>60대</span></label>
             </div>
           </div>
 
@@ -537,6 +578,7 @@
             <span class="lf-label">연락 가능 시간 <i>선택</i></span>
             <div class="chips" role="group" aria-label="연락 가능 시간 선택">
               <label class="chip"><input type="radio" name="time" value="오전"><span>오전</span></label>
+              <label class="chip"><input type="radio" name="time" value="점심"><span>점심</span></label>
               <label class="chip"><input type="radio" name="time" value="오후"><span>오후</span></label>
               <label class="chip"><input type="radio" name="time" value="저녁"><span>저녁</span></label>
               <label class="chip"><input type="radio" name="time" value="무관" checked><span>아무때나</span></label>
@@ -550,7 +592,7 @@
             </label>
             <button class="agree-toggle" type="button" aria-expanded="false">내용 보기</button>
             <div class="agree-detail" hidden>
-              <p><b>수집 항목</b> 이름, 휴대폰 번호, 연령대, 연락 가능 시간</p>
+              <p><b>수집 항목</b> 이름, 휴대폰 번호, 지역, 직업, 연령대, 연락 가능 시간</p>
               <p><b>수집 목적</b> 보험설계사 위촉 상담 및 안내</p>
               <p><b>보유 기간</b> 동의일로부터 3개월 (목적 달성 시 즉시 파기)</p>
               <p class="agree-warn">동의를 거부하실 수 있으며, 거부 시 상담 신청이 제한됩니다.</p>
