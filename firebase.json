@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "target": "wonder-microweb",
     "public": "public_placeholder",
     "ignore": ["firebase.json", "**/.*", "node_modules/**", "Dockerfile", "README.md"],
     "rewrites": [

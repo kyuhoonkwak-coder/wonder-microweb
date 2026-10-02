@@ -28,5 +28,13 @@ try {
     echo json_encode(['ok' => true]);
 } catch (Throwable $e) {
     http_response_code(500);
-    echo json_encode(['ok' => false, 'error' => 'bq_error', 'message' => $e->getMessage()]);
+    if (strpos($e->getMessage(), 'streaming buffer') !== false) {
+        echo json_encode([
+            'ok' => false,
+            'error' => 'streaming_buffer',
+            'message' => '방금 들어온 신청 건입니다. BigQuery 특성상 접수 후 약 90분이 지나야 삭제할 수 있습니다. 잠시 후 다시 시도해주세요.',
+        ]);
+    } else {
+        echo json_encode(['ok' => false, 'error' => 'bq_error', 'message' => '삭제 중 오류가 발생했습니다.']);
+    }
 }
